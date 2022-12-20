@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main {
 
     public static void menu() {
@@ -13,52 +11,62 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String username;
-        String password;
-        boolean session = false;
 
-        // Display bank name
-        System.out.println("Geeks Bank");
-        System.out.println();
+        USSD s = new USSD();
+        s.startApplication();
 
-        System.out.print("Enter your username: ");
-        username = sc.next();
+        // Account acc = new Account("12345678", 10000, "Mpumelelo", "1234");
+        // System.out.println(acc.getName());
 
-        System.out.print("Enter your pin: ");
-        password = sc.next();
+        // File file = new File(
+        // );
 
-        session = true;
+        // Scanner sc = new Scanner(System.in);
+        // String username;
+        // String password;
+        // boolean session = false;
 
-        System.out.println(username + " " + password);
+        // // Display bank name
+        // System.out.println("Geeks Bank");
+        // System.out.println();
 
-        int option;
-        System.out.println("Choose Option: ");
-        
-        while (session) {
-            menu();
-            option = sc.nextInt();
+        // System.out.print("Enter your username: ");
+        // username = sc.next();
 
-            switch (option) {
-                case 1:
-                    System.out.println("Check Balance");
-                    break;
-                case 2:
-                    System.out.println("Deposit");
-                    break;
-                case 3:
-                    System.out.println("Send Money");
-                    break;
-                case 4:
-                    System.out.println("Withdraw");
-                    break;
-                case 99:
-                session = false;
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-                    break;
-            }
-        }
+        // System.out.print("Enter your pin: ");
+        // password = sc.next();
+
+        // session = true;
+
+        // System.out.println(username + " " + password);
+
+        // int option;
+        // System.out.println("Choose Option: ");
+
+        // while (session) {
+        // menu();
+        // option = sc.nextInt();
+
+        // switch (option) {
+        // case 1:
+        // System.out.println("Check Balance");
+        // break;
+        // case 2:
+        // System.out.println("Deposit");
+        // break;
+        // case 3:
+        // System.out.println("Send Money");
+        // break;
+        // case 4:
+        // System.out.println("Withdraw");
+        // break;
+        // case 99:
+        // session = false;
+        // break;
+        // default:
+        // System.out.println("Invalid Input");
+        // break;
+        // }
+        // }
     }
 }

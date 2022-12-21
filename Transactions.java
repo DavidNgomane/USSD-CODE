@@ -27,7 +27,7 @@ public abstract class Transactions implements ITransaction {
             br.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
     }
@@ -47,19 +47,32 @@ public abstract class Transactions implements ITransaction {
         }
         return null;
     }
+    
+
+    public List<Account> getAccounts(Double Amount) {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
 
     @Override
     public double sendMoney() {
+        
         return 0;
     }
 
     @Override
     public double withdrawMoney() {
+            
         return 0;
     }
 
     @Override
     public double depositMoney() {
+        
         return 0;
     }
 

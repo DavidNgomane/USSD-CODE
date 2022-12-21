@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,7 +46,6 @@ public abstract class Transactions implements ITransaction {
             fr.write(record);
             fr.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -84,7 +82,7 @@ public abstract class Transactions implements ITransaction {
         double amnt = input.nextDouble();
 
         for (Account a : accounts) {
-            if (a.getName().compareTo(acc) == 0) {
+            if (a.getAccount().compareTo(acc) == 0) {
                 me.setAccount(me.getAmount() - amnt);
                 a.setAccount(a.getAmount() + amnt);
                 break;
@@ -94,13 +92,29 @@ public abstract class Transactions implements ITransaction {
     }
 
     @Override
-    public double withdrawMoney() {
+    public double withdrawMoney(Account me) {
+        System.out.print("Withdrwal Amount: ");
+        double amnt = input.nextDouble();
 
+        // Withdraw...
+
+        me.setAccount(me.getAmount() - amnt);
+
+        // When you are done withdrawing...
+        updateDB();
         return 0;
     }
 
     @Override
-    public double depositMoney() {
+    public double depositMoney(Account me) {
+        System.out.print("Deposit Amount: ");
+        double amnt = input.nextDouble();
+
+        // Deposit...
+
+        me.setAccount(me.getAmount() + amnt);
+
+        updateDB();
 
         return 0;
     }

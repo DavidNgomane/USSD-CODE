@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class USSD extends Transactions implements IUSSD {
-    Account session;
+    Account myobject;
     Scanner input;
 
     USSD() {
@@ -13,23 +13,23 @@ public class USSD extends Transactions implements IUSSD {
     public void startApplication() {
         readFromDB();
 
-        if ((session = login()) != null) {
-            while (session != null) {
+        if ((myobject = login()) != null) {
+            while (myobject != null) {
                 showMenu();
                 int option = input.nextInt();
 
                 switch (option) {
                     case 1:
-                        sendMoney(session);
+                        sendMoney(myobject);
                         break;
                     case 2:
-                        depositMoney();
+                        depositMoney(myobject);
                         break;
                     case 3:
-                        withdrawMoney();
+                        withdrawMoney(myobject);
                         break;
                     case 99:
-                        session = exit();
+                        myobject = exit();
                 }
 
             }
@@ -40,7 +40,7 @@ public class USSD extends Transactions implements IUSSD {
 
     @Override
     public void showMenu() {
-        System.out.println("Balance: R" + checkBalance(session));
+        System.out.println("Balance: R" + checkBalance(myobject));
         System.out.println("1. Send Money");
         System.out.println("2. Deposit Money");
         System.out.println("3. Withdraw Money");

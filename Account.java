@@ -17,4 +17,8 @@ public class Account extends User{
     public double getAmount() {
         return amount;
     }
+
+    public void setAccount(double acc){
+        amount = acc;
+    }
 }

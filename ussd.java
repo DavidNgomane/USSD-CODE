@@ -20,7 +20,7 @@ public class USSD extends Transactions implements IUSSD {
 
                 switch (option) {
                     case 1:
-                        sendMoney();
+                        sendMoney(session);
                         break;
                     case 2:
                         depositMoney();

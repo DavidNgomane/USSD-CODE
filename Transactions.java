@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -27,7 +29,25 @@ public abstract class Transactions implements ITransaction {
             br.close();
 
         } catch (IOException e) {
-            
+
+            e.printStackTrace();
+        }
+    }
+
+    public void updateDB() {
+        try {
+            String record = "";
+            FileWriter fr = new FileWriter("C:/Users/user/Documents/test1/Database/datafile.txt");
+
+            for (Account acc : accounts) {
+                record += acc.getName() + ", " + acc.getPassword() +
+                        ", " + acc.getAccount() + ", " + acc.getAmount() + "\n";
+            }
+
+            fr.write(record);
+            fr.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -40,14 +60,12 @@ public abstract class Transactions implements ITransaction {
         String pwd = input.next();
 
         for (Account acc : accounts) {
-            // System.out.println(acc.getName() + " " + acc.getPassword());
             if (acc.getName().compareTo(un) == 0 && acc.getPassword().compareTo(pwd) == 0) {
                 return acc;
             }
         }
         return null;
     }
-    
 
     public List<Account> getAccounts(Double Amount) {
         return accounts;
@@ -57,22 +75,33 @@ public abstract class Transactions implements ITransaction {
         this.accounts = accounts;
     }
 
-
     @Override
-    public double sendMoney() {
-        
-        return 0;
+    public void sendMoney(Account me) {
+        System.out.println("Who are you sending money to: ");
+        String acc = input.next();
+
+        System.out.println("How much: ");
+        double amnt = input.nextDouble();
+
+        for (Account a : accounts) {
+            if (a.getName().compareTo(acc) == 0) {
+                me.setAccount(me.getAmount() - amnt);
+                a.setAccount(a.getAmount() + amnt);
+                break;
+            }
+        }
+        updateDB();
     }
 
     @Override
     public double withdrawMoney() {
-            
+
         return 0;
     }
 
     @Override
     public double depositMoney() {
-        
+
         return 0;
     }
 
